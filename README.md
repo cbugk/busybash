@@ -6,37 +6,51 @@
 
 ## How to use?
 
-* Clone this repo and navigate in.
-* Under _cmd_:
-  * Create a directory for your program and add _Main.sh_. Add _env.sh_ if
-    you would like to seperate variables from _Main.sh_
-* Under _fcn_:
-  * Add your own function definitions. Remember to export functions.
-* Then, bind your program into a monoscript and optionally run it.
+Follow these steps to use this repository:
 
-```
+1. **Clone the Repository**: First, clone this repository to your local machine using the following command:
+
+```bash
 git clone https://github.com/cbugk/busybash
 cd busybash
+```
 
+2. **Create a Program**: Next, create a directory for your program under the `cmd` directory. In this directory, you should add a `Main.sh` file that contains the main function of your program. You can also add an `env.sh` file if you want to separate variables from the `Main.sh` file.
+
+```bash
 mkdir cmd/hello
+```
 
-# Mind the tab characters and <<-
+3. **Add Main Function**: In the `Main.sh` file, define your main function. You can use the `WHO` variable to print a personalized message.
+
+```bash
 cat > cmd/hello/Main.sh <<-MAIN
-	#!/bin/bash
-	
-	function Main() {
-	  printf 'Hello World!\n'
-	  printf "This is ${WHO}\n"
-	}; export -f Main;
+    #!/bin/bash
+
+    function Main() {
+      printf 'Hello World!\n'
+      printf "This is ${WHO}\n"
+    }; export -f Main;
 MAIN
+```
 
-# Mind that ${USER} will be evaluated
+4. **Add Environment Variables**: If you want to separate variables from the `Main.sh` file, you can create an `env.sh` file in the same directory. In this file, you can define the `WHO` variable.
+
+```bash
 cat > cmd/hello/env.sh <<-ENVSH
-	WHO=${USER}
+    WHO=${USER}
 ENVSH
+```
 
+5. **Build the Program**: Once you've added your main script and environment variables, you can build your script using the build.sh script in the bb directory. This will combine your main script, environment variables, and any functions you've defined into a single script.
+```bash
 chmod u+x ./bb/bind.sh # make executable
 ./bb/build.sh cmd/hello
+```
+
+6. **Run the Program**: After building your script, you can run it using the generated script in the `out` directory.
+
+```bash
 ./out/hello.sh
 ```
 
