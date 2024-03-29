@@ -22,19 +22,25 @@ Follow these steps to use this repository:
 ```bash
 git clone https://github.com/cbugk/busybash
 cd busybash
-mkdir cmd/hello
-cat > cmd/hello/Main.sh <<-MAIN
-    #!/bin/bash
 
-    function Main() {
-      printf 'Hello World!\n'
-      printf "This is ${WHO}\n"
-    }; export -f Main;
+mkdir cmd/hello
+
+# Mind the tab characters and <<-
+cat > cmd/hello/Main.sh <<-MAIN
+	#!/bin/bash
+	
+	function Main() {
+	  printf 'Hello World!\n'
+	  printf "This is ${WHO}\n"
+	}; export -f Main;
 MAIN
+
+# Mind that ${USER} will be evaluated
 cat > cmd/hello/env.sh <<-ENVSH
-    WHO=${USER}
+	WHO=${USER}
 ENVSH
-chmod u+x ./bb/bind.sh
+
+chmod u+x ./bb/bind.sh # make executable
 ./bb/build.sh cmd/hello
 ./out/hello.sh
 ```
