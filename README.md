@@ -8,7 +8,7 @@
 
 Follow these steps to use this repository:
 
-1. **Clone the Repository**: First, clone this repository to your local machine using the following command:
+1. **Clone the Repository**: First, clone this repository to your local machine.
 
 2. **Create a Program**: Next, create a directory for your program under the `cmd` directory. In this directory, you should add a `Main.sh` file that contains the main function of your program. You can also add an `env.sh` file if you want to separate variables from the `Main.sh` file.
 
